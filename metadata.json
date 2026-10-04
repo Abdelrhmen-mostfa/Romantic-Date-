@@ -1,0 +1,6 @@
+{
+  "name": "A Date with Tasneem",
+  "description": "A dreamy romantic and playful date invitation website tailored for Tasneem.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
