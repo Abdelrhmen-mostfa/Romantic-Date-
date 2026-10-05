@@ -9,16 +9,14 @@ import { ScreenCelebration } from './components/ScreenCelebration';
 import { CelebrationOverlay } from './components/CelebrationOverlay';
 
 export default function App() {
-  const [currentStep, setCurrentStep] = useState<number>(() => {
+  // Always start on screen 1 whenever the link is opened
+  const [currentStep, setCurrentStep] = useState<number>(1);
+
+  useEffect(() => {
     try {
-      const savedStep = localStorage.getItem('tasneem_date_step');
-      if (savedStep) {
-        const parsed = parseInt(savedStep, 10);
-        if (parsed >= 1 && parsed <= 4) return parsed;
-      }
+      localStorage.removeItem('tasneem_date_step');
     } catch {}
-    return 1;
-  });
+  }, []);
 
   const [outfit, setOutfit] = useState<'Modest' | 'Casual'>(() => {
     try {
@@ -60,12 +58,9 @@ export default function App() {
     nextStep: 2,
   });
 
-  // Save current step
+  // Set current step in memory only so reload always starts from step 1
   const updateStep = (step: number) => {
     setCurrentStep(step);
-    try {
-      localStorage.setItem('tasneem_date_step', step.toString());
-    } catch {}
   };
 
   // Screen 1: Accept
